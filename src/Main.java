@@ -2,9 +2,9 @@ public class Main {
 
     public static void main(String[] args) {
         Users user = new Users("java_skypro_go", "D_1hWiKjjP_9", "D_1hWiKjjP_9");
+        System.out.println(user);
         try {
             ServiceError.workExceptions(Users.getLogin(), Users.getPassword(), Users.getConfirmPassword());
-            System.out.println(user);
         } catch (NullPointerException nullError) {
             System.out.println(" проверить все обязательные поля: login, password или confirmPassword, что то забыли ввести. ");
         } catch (WrongLoginErrorException loginError) {
