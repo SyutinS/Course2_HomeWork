@@ -1,4 +1,4 @@
-public class Service { // login, password, confirmPassword
+public class Service {
 
     public static void workExceptions(String login, String password, String confirmPassword) {
         try {
