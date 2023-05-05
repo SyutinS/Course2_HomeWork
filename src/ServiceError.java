@@ -6,16 +6,16 @@ public class ServiceError {
             throw new NullPointerException();
         }
         if (!login.matches("[a-zA-Z0-9_]+")) { // неправильный логин
-            throw new WrongLoginErrorException(login);
+            throw new WrongLoginErrorException("неправильный логин " + login);
         }
         if (login.length() >= 20) { // длинный логин
-            throw new WrongLoginException(login);
+            throw new WrongLoginException(" длинный логин " + login);
         }
         if (!password.matches("[a-zA-Z0-9_]{1,20}")) { // неправильный пароль
-            throw new WrongPasswordErrorException(password);
+            throw new WrongPasswordErrorException("неправильный пароль" + password);
         }
         if (!confirmPassword.equals(password)) { // пароли не совпадают
-            throw new WrongPasswordException(confirmPassword);
+            throw new WrongPasswordException("пароли не совпадают " + confirmPassword);
         }
     }
 }
