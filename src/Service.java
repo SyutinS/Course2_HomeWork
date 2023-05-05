@@ -1,25 +1,27 @@
-import javax.management.BadStringOperationException;
-
-public class Service {
+public class Service { // login, password, confirmPassword
 
     public static void workExceptions(String login, String password, String confirmPassword) {
         try {
-            if (Users.getLogin().matches("a-zA-Z0-9") && Users.getLogin().length() > 20) { // неправильный логин
-                throw new BadStringOperationException(login); // WrongLoginException(login)
+            if (login == null || password == null || confirmPassword == null) {
+                throw new NullPointerException();
             }
-
-            if (Users.getPassword().matches("[a-zA-Z0-9]+_") && Users.getPassword().length() >= 20) { // неправильный пароль
-                throw new RuntimeException(password); // WrongPasswordException
+            if (!login.matches("[a-zA-Z0-9_]{1,19}")) { // неправильный логин
+                throw new WrongLoginException();
             }
-
-            if (!Users.getConfirmPassword().equals(Users.getPassword())) { // пароли не совпадают
-                throw new RuntimeException(confirmPassword); // WrongPasswordException
+            if (!password.matches("[a-zA-Z0-9_]{1,20}")) { // неправильный пароль
+                throw new WrongPasswordException();
             }
-        } catch (BadStringOperationException loginError) {
-            System.out.println(Users.getLogin() + " логин не правильный ");
-        }
-        finally {
-            System.out.println(" Все зашибись работает ");
+            if (!confirmPassword.equals(password)) { // пароли не совпадают
+                throw new WrongPasswordException();
+            }
+        } catch (NullPointerException nullError) {
+            System.out.println(" проверить все обязательные поля: login, password или confirmPassword, что то забыли ввести. ");
+        } catch (WrongLoginException loginError) {
+            System.out.println(" WrongLoginException ");
+        } catch (WrongPasswordException passwordError) {
+            System.out.println(" WrongPasswordException ");
+        } finally {
+            System.out.println(" Метод завершен ");
         }
     }
 }

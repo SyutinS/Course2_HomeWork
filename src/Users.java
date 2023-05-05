@@ -20,4 +20,13 @@ public class Users {
     public static String getConfirmPassword() {
         return confirmPassword;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
+    }
 }
