@@ -9,7 +9,7 @@ public class Service {
                 throw new WrongLoginException();
             }
             if (!password.matches("[a-zA-Z0-9_]{1,20}")) { // неправильный пароль
-                throw new WrongPasswordException();
+                throw new WrongPasswordErrorException();
             }
             if (!confirmPassword.equals(password)) { // пароли не совпадают
                 throw new WrongPasswordException();
@@ -18,7 +18,9 @@ public class Service {
             System.out.println(" проверить все обязательные поля: login, password или confirmPassword, что то забыли ввести. ");
         } catch (WrongLoginException loginError) {
             System.out.println(" WrongLoginException ");
-        } catch (WrongPasswordException passwordError) {
+        } catch (WrongPasswordErrorException passwordError) {
+            System.out.println("' " + password + " ' Пароль задан не верно ");
+        } catch (WrongPasswordException passwordEqualsError) {
             System.out.println(" WrongPasswordException ");
         } finally {
             System.out.println(" Метод завершен ");
